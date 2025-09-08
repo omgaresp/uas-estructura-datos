@@ -5,13 +5,16 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 ## 📚 Índice de Tareas/Trabajos/Proyectos
 
 - **Ejercicio 1** - "Declarar e Inicializar Arrays" 
-  - [Python](./Python/Ejercicio1.py) | [JavaScript](./JavaScript/Ejercicio1.js) | [Java](./Java/Ejercicio1.java) | [C++](./C++/Ejercicio1.cpp) | [C#](./C%23/Ejercicio1.cs)
+  - [C#](./C%23/Ejercicio1.cs) | [C++](./C++/Ejercicio1.cpp) | [Java](./Java/Ejercicio1.java) | [JavaScript](./JavaScript/Ejercicio1.js) | [Python](./Python/Ejercicio1.py)
   
 - **Ejercicio 2** - "Tipos Definidos con Arrays"
-  - [Python](./Python/Ejercicio2.py) | [JavaScript](./JavaScript/Ejercicio2.js) | [Java](./Java/Ejercicio2.java) | [C++](./C++/Ejercicio2.cpp) | [C#](./C%23/Ejercicio2.cs)
+  - [C#](./C%23/Ejercicio2.cs) | [C++](./C++/Ejercicio2.cpp) | [Java](./Java/Ejercicio2.java) | [JavaScript](./JavaScript/Ejercicio2.js) | [Python](./Python/Ejercicio2.py)
 
 - **Ejercicio 3** - "Recorrido, Insercion, Buscar y Recorrido Inverso con Arrays Simples y Definidos"
-  - [Python](./Python/Ejercicio3.py) | [JavaScript](./JavaScript/Ejercicio3.js) | [Java](./Java/Ejercicio3.java) | [C++](./C++/Ejercicio3.cpp) | [C#](./C%23/Ejercicio3.cs)
+  - [C#](./C%23/Ejercicio3.cs) | [C++](./C++/Ejercicio3.cpp) | [Java](./Java/Ejercicio3.java) | [JavaScript](./JavaScript/Ejercicio3.js) | [Python](./Python/Ejercicio3.py)
+
+- **Ejercicio 4** - "Declarar, Inicializar y Recorrer una Matriz 3x3"
+  - [C#](./C%23/Ejercicio4.cs) | [C++](./C++/Ejercicio4.cpp) | [Java](./Java/Ejercicio4.java) | [JavaScript](./JavaScript/Ejercicio4.js) | [Python](./Python/Ejercicio4.py)
 
 
 ## 🛠️ Lenguajes Utilizados
