@@ -1,4 +1,4 @@
-// 1.Crear tipo definido / Clase
+// Crear tipo definido / Clase
 class Persona {
     final private String nombre, apellido1, apellido2;
     
@@ -14,7 +14,7 @@ class Persona {
     }
 }
 
-// 2.Utilizarlo en un Array
+// Utilizarlo en un Array
 public class Ejercicio2 {
     public static void main(String[] args) {
         Persona[] personas = {

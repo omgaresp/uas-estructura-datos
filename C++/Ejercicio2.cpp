@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-// 1.Crear tipo definido / Struct
+// Crear tipo definido / Struct
 struct Persona {
     string nombre, apellido1, apellido2;
     
@@ -17,7 +17,7 @@ struct Persona {
     }
 };
 
-// 2.Utilizarlo en un Array
+// Utilizarlo en un Array
 int main() {
     Persona personas[3] = {
         Persona("Juan", "García", "López"),

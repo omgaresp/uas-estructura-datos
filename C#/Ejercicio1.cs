@@ -1,9 +1,9 @@
 using System;
 
-// 1.Declarar un Array en C#
+// Declarar un Array en C#
 int[] array1 = new int[5];
 
-// 2.Inicializar un Array en C#
+// Inicializar un Array en C#
 int[] array2 = {11, 12, 13, 14, 15};
 
 // Mostrar los arrays

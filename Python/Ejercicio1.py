@@ -1,7 +1,7 @@
-# 1.Declarar un Array en Python
+# Declarar un Array en Python
 array1 = []
 
-# 2.Inicializar un Array en Python
+# Inicializar un Array en Python
 array2 = [11, 12, 13, 14, 15]
 
 # Mostrar los arrays

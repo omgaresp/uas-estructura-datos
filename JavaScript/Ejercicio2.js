@@ -1,4 +1,4 @@
-// 1.Crear tipo definido / Clase
+// Crear tipo definido / Clase
 class Persona {
     constructor(nombre, apellido1, apellido2) {
         this.nombre = nombre;
@@ -11,7 +11,7 @@ class Persona {
     }
 }
 
-// 2.Utilizarlo en un Array
+// Utilizarlo en un Array
 let personas = [
     new Persona("Juan", "García", "López"),
     new Persona("María", "Rodríguez", "Martín"),

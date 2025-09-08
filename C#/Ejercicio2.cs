@@ -1,6 +1,6 @@
 using System;
 
-// 1.Crear tipo definido / Clase
+// Crear tipo definido / Clase
 class Persona {
     public string Nombre { get; set; }
     public string Apellido1 { get; set; }
@@ -17,7 +17,7 @@ class Persona {
     }
 }
 
-// 2.Utilizarlo en un Array (Da error por el IntelliSense al parecer y porque estoy usando dotnet-scripts)
+// Utilizarlo en un Array (Da error por el IntelliSense al parecer y porque estoy usando dotnet-scripts)
 Persona[] personas = {
     new Persona("Juan", "García", "López"),
     new Persona("María", "Rodríguez", "Martín"),
