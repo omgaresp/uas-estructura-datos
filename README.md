@@ -31,25 +31,15 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 uas-estructura-datos/
 ├── README.md
 ├── C#/
-│   ├── Ejercicio1.cs
-│   ├── Ejercicio2.cs
-│   ├── Ejercicio3.cs
+│   ├── Ejercicios.cs
 ├── C++/
-│   ├── Ejercicio1.cpp
-│   ├── Ejercicio2.cpp
-│   ├── Ejercicio3.cpp
+│   ├── Ejercicios.cpp
 ├── Java/
-│   ├── Ejercicio1.java
-│   ├── Ejercicio2.java
-│   ├── Ejercicio3.java
+│   ├── Ejercicios.java
 ├── JavaScript/
-│   ├── Ejercicio1.js
-│   ├── Ejercicio2.js
-│   ├── Ejercicio3.js
+│   ├── Ejercicios.js
 └── Python/
-    ├── Ejercicio1.py
-    ├── Ejercicio2.py
-    ├── Ejercicio3.py
+    ├── Ejercicios.py
 ```
 
 ## 📖 Notas del Curso
