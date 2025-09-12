@@ -4,9 +4,9 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 
 ## 📚 Índice de Tareas/Trabajos/Proyectos
 
-- **Ejercicio 1** - "Declarar e Inicializar Arrays" 
+- **Ejercicio 1** - "Declarar e Inicializar Arrays"
   - [C#](./C%23/Ejercicio1.cs) | [C++](./C++/Ejercicio1.cpp) | [Java](./Java/Ejercicio1.java) | [JavaScript](./JavaScript/Ejercicio1.js) | [Python](./Python/Ejercicio1.py)
-  
+
 - **Ejercicio 2** - "Tipos Definidos con Arrays"
   - [C#](./C%23/Ejercicio2.cs) | [C++](./C++/Ejercicio2.cpp) | [Java](./Java/Ejercicio2.java) | [JavaScript](./JavaScript/Ejercicio2.js) | [Python](./Python/Ejercicio2.py)
 
@@ -16,6 +16,8 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 - **Ejercicio 4** - "Declarar, Inicializar y Recorrer una Matriz 3x3"
   - [C#](./C%23/Ejercicio4.cs) | [C++](./C++/Ejercicio4.cpp) | [Java](./Java/Ejercicio4.java) | [JavaScript](./JavaScript/Ejercicio4.js) | [Python](./Python/Ejercicio4.py)
 
+- **Mini Poryecto 1** - "Gato - Fecha de Entrega 12/sept/25 - Heriberto Java - Omar C# - Fer Python - Yesenia C++ - Liz JavaScript"
+  - [C#](./C%23/MiniProyecto1.cs) | [C++] | [Java] | [JavaScript] | [Python]
 
 ## 🛠️ Lenguajes Utilizados
 
