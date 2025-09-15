@@ -19,6 +19,9 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 - **Mini Poryecto 1** - "Gato - Fecha de Entrega 12/sept/25 - Heriberto Java - Omar C# - Fer Python - Yesenia C++ - Liz JavaScript"
   - [C#](./C%23/MiniProyecto1.cs) | [C++] | [Java] | [JavaScript] | [Python]
 
+- **Ejercicio 5** - "BubbleSort"
+  - [C#](./C%23/Ejercicio5.cs) | [C++](./C++/Ejercicio5.cpp) | [Java](./Java/Ejercicio5.java) | [JavaScript](./JavaScript/Ejercicio5.js) | [Python](./Python/Ejercicio5.py)
+
 ## 🛠️ Lenguajes Utilizados
 
 - **Python** 3.13+
