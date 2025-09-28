@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Random;
 
-public class MiniProyecto2 {
+public class Proyecto2 {
     // Constantes del juego
     private static final int FILAS = 6;
     private static final int COLUMNAS = 7;
@@ -16,7 +16,7 @@ public class MiniProyecto2 {
     private String nombreJugador1;
     private String nombreJugador2;
     
-    public MiniProyecto2() {
+    public Proyecto2() {
         tablero = new char[FILAS][COLUMNAS];
         scanner = new Scanner(System.in);
         inicializarTablero();
@@ -310,7 +310,7 @@ public class MiniProyecto2 {
     
     // Método main para ejecutar el juego
     public static void main(String[] args) {
-        MiniProyecto2 juego = new MiniProyecto2();
+        Proyecto2 juego = new Proyecto2();
         juego.jugar();
     }
 }
