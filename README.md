@@ -31,6 +31,12 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 - **Ejercicio 9** - "MergeSort"
   - [C#](./C%23/Ejercicio9.cs) | [C++](./C++/Ejercicio9.cpp) | [Java](./Java/Ejercicio9.java) | [JavaScript](./JavaScript/Ejercicio9.js) | [Python](./Python/Ejercicio9.py)
 
+- **Ejercicio 10** - "HeapSort"
+  - [C#](./C%23/Ejercicio10.cs) | [C++](./C++/Ejercicio10.cpp) | [Java](./Java/Ejercicio10.java) | [JavaScript](./JavaScript/Ejercicio10.js) | [Python](./Python/Ejercicio10.py)
+
+- **Ejercicio 11** - "ShellSort"
+  - [C#](./C%23/Ejercicio11.cs) | [C++](./C++/Ejercicio11.cpp) | [Java](./Java/Ejercicio11.java) | [JavaScript](./JavaScript/Ejercicio11.js) | [Python](./Python/Ejercicio11.py)
+
 ## 📚 Índice de Proyectos
 
 - **Proyecto 1** - "Gato - Fecha de Entrega 12/sept/25 - Heriberto Java - Omar C# - Fer Python - Yesenia C++ - Liz JavaScript"
@@ -91,4 +97,4 @@ uas-estructura-datos/
 
 ---
 
-*Última actualización: Septiembre 2025*
+*Última actualización: Octubre 2025*
