@@ -45,13 +45,22 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 - **Proyecto 2** - "Conecta 4 - Fecha de Entrega 17/sept/25 - Heriberto JavaScript - Omar Java - Fer C# - Yesenia Python - Liz C++"
   - C# | C++ | [Java](./Java/Proyecto2.java) | JavaScript | Python
 
-- **Proyecto 3** - "Batalla Naval - 1: 26/sept/25 - Heriberto C++ - Omar Javascript - Fer Java - Yesenia C# - Liz Python"
+- **Proyecto 3** - "Batalla Naval - Fecha de Entrega 03/oct/25 - Heriberto C++ - Omar Javascript - Fer Java - Yesenia C# - Liz Python"
   - C# | C++ | Java | [JavaScript](./JavaScript/Proyecto3.js) | Python
+
+- **Proyecto 4** - "Virus Outbreak - Fecha de Entrega 22/oct/25 - Heriberto Python - Omar C++ - Fer JavaScript - Yesenia Java - Liz C#"
+  - C# | [C++](./C++/Proyecto4.cpp) | Java | JavaScript | Python
+
+- **Proyecto 5** - "Sudoku - Fecha de Entrega 31/oct/25 - Heriberto C# - Omar Python - Fer C++ - Yesenia JavaScript - Liz Java"
+  - C# | C++ | Java | JavaScript | [Python](./Python/Proyecto5.py)
 
 ## 📚 Índice de Examenes
 
 - **Examen 1** - "Leer 10 Numeros y mostrarlos en el mismo orden y despues al inverso, calcular suma y promedio, mostrar numero mayor y menor, finalmente contar cuantos son pares y cuantos impares"
   - C# | C++ | Java | JavaScript | [Python](./Python/Examen1.py)
+
+- **Examen 2** - "1D - Ordenar y Buscar en un Array | 2D - Encontrar el valor maximo | 3D - Ordenar subarreglos de manera asc, desc y asc de nuevo (5x5x5)"
+  - C# | C++ | [Java](./Java/Examen2.java) | JavaScript | Python
 
 ## 🛠️ Lenguajes Utilizados
 
