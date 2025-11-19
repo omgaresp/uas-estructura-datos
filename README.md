@@ -54,6 +54,9 @@ Repositorio de ejercicios, tareas y proyectos de la materia de Estructura de Dat
 - **Proyecto 5** - "Sudoku - Fecha de Entrega 31/oct/25 - Heriberto C# - Omar Python - Fer C++ - Yesenia JavaScript - Liz Java"
   - C# | C++ | Java | JavaScript | [Python](./Python/Proyecto5.py)
 
+- **Proyecto 6** - "Snake - Fecha de Entrega 14/nov/25 - Heriberto Java - Omar C# - Fer Python - Yesenia C++ - Liz JavaScript"
+  - [C#](./C%23/Proyecto6.cs) | C++ | Java | JavaScript | Python
+
 ## 📚 Índice de Examenes
 
 - **Examen 1** - "Leer 10 Numeros y mostrarlos en el mismo orden y despues al inverso, calcular suma y promedio, mostrar numero mayor y menor, finalmente contar cuantos son pares y cuantos impares"
