@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merge Sort Motion - Vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        :root {
+            --bg-color: #1e1e2e;
+            --text-color: #cdd6f4;
+            --box-bg: #313244;
+            --box-border: #585b70;
+            --highlight: #f9e2af; /* Amarillo comparar */
+            --sorted: #a6e3a1;    /* Verde ordenado */
+            --split: #89b4fa;     /* Azul dividir */
+            --primary: #cba6f7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* CONTROLES */
+        .controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            z-index: 100;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .btn-next { background: var(--primary); color: #1e1e2e; }
+        .btn-prev { background: #45475a; color: white; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* ESCENARIO */
+        #app {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stage {
+            width: 900px;
+            height: 450px;
+            background: #181825;
+            border: 2px solid var(--box-border);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centrado verticalmente */
+            padding: 20px;
+            position: relative;
+        }
+
+        .row {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            min-height: 60px; /* Espacio reservado */
+            width: 100%;
+        }
+
+        .group {
+            display: flex;
+            gap: 5px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 2px solid transparent;
+            background: rgba(255,255,255,0.02);
+            transition: all 0.5s ease;
+        }
+
+        /* Colores de estado del grupo */
+        .group.active { border-color: var(--split); }
+        .group.merging { border-color: var(--highlight); background: rgba(249, 226, 175, 0.05); }
+        .group.sorted { border-color: var(--sorted); background: rgba(166, 227, 161, 0.05); }
+        .group.dimmed { opacity: 0.2; }
+
+        /* CAJAS DE NÚMEROS */
+        .num-box {
+            width: 50px;
+            height: 50px;
+            background-color: var(--box-bg);
+            border: 2px solid var(--box-border);
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Estados del Item individual */
+        .num-box.comparing {
+            background-color: var(--highlight);
+            color: #1e1e2e;
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+            z-index: 20;
+            border-color: var(--highlight);
+        }
+
+        .num-box.sorted-item {
+            background-color: var(--sorted);
+            color: #1e1e2e;
+            border-color: var(--sorted);
+        }
+
+        /* --- MAGIA DE VUE TRANSITIONS (FLIP) --- */
+        /* Esto controla el movimiento suave cuando un elemento cambia de posición */
+        .list-move, 
+        .list-enter-active,
+        .list-leave-active {
+            transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .list-enter-from,
+        .list-leave-to {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+
+        /* Para que el elemento que se va no rompa el layout de los que se mueven */
+        .list-leave-active {
+            position: absolute; 
+        }
+
+        /* GUION */
+        .script-box {
+            margin-top: 20px;
+            background: #11111b;
+            padding: 20px;
+            border-left: 4px solid var(--primary);
+            width: 800px;
+            min-height: 80px;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <div class="controls">
+        <button class="btn-prev" @click="prev" :disabled="step === 0">Anterior</button>
+        <span style="font-family: monospace;">Paso {{ step }} / {{ steps.length - 1 }}</span>
+        <button class="btn-next" @click="next" :disabled="step === steps.length - 1">Siguiente</button>
+    </div>
+
+    <div class="stage">
+        <div class="row" v-for="(row, rIndex) in currentData.rows" :key="rIndex">
+            <div 
+                class="group" 
+                v-for="(group, gIndex) in row" 
+                :key="gIndex"
+                :class="group.state"
+            >
+                <transition-group name="list" tag="div" style="display:flex; gap:5px;">
+                    <div 
+                        class="num-box" 
+                        v-for="item in group.items" 
+                        :key="item.id" 
+                        :class="{ 
+                            'comparing': group.comparingIds && group.comparingIds.includes(item.id),
+                            'sorted-item': group.state === 'sorted' || group.final
+                        }"
+                    >
+                        {{ item.val }}
+                    </div>
+                </transition-group>
+            </div>
+        </div>
+    </div>
+
+    <div class="script-box">
+        {{ currentData.text }}
+    </div>
+</div>
+
+<script>
+    const { createApp, computed, ref, onMounted } = Vue;
+
+    createApp({
+        setup() {
+            const step = ref(0);
+
+            // Base de datos de los números. Los IDs son vitales para el movimiento.
+            const all = {
+                n38: { id: 'n38', val: 38 },
+                n5:  { id: 'n5',  val: 5 },
+                n12: { id: 'n12', val: 12 },
+                n7:  { id: 'n7',  val: 7 },
+                n19: { id: 'n19', val: 19 },
+                n1:  { id: 'n1',  val: 1 }
+            };
+
+            // Helpers para escribir menos
+            const get = (ids) => ids.map(id => all[id]);
+            
+            // Definición exacta de los frames para el video
+            const steps = [
+                // 0. Intro
+                {
+                    text: "Supongamos que queremos ordenar esta lista: 38, 5, 12, 7, 19, 1.",
+                    rows: [[{ items: get(['n38','n5','n12','n7','n19','n1']), state: 'active' }]]
+                },
+                // 1. Split 1
+                {
+                    text: "MergeSort la parte por la mitad. Obtenemos dos listas: [38, 5, 12] y [7, 19, 1].",
+                    rows: [
+                        [{ items: [], state: 'dimmed' }], // Fila vacía para mantener espacio visual si quieres, o quitar
+                        [{ items: get(['n38','n5','n12']), state: 'active' }, { items: get(['n7','n19','n1']), state: 'active' }]
+                    ]
+                },
+                // 2. Split Izquierda
+                {
+                    text: "Después, cada mitad vuelve a dividirse: [38] y [5, 12].",
+                    rows: [
+                        [{ items: [], state: '' }],
+                        [{ items: get(['n38']), state: 'active' }, { items: get(['n5','n12']), state: 'active' }, { items: get(['n7','n19','n1']), state: 'dimmed' }]
+                    ]
+                },
+                // 3. Split Izquierda Final
+                {
+                    text: "Este proceso continúa hasta que cada lista tiene un solo elemento.",
+                    rows: [
+                        [{ items: [], state: '' }],
+                        [{ items: get(['n38']), state: 'active' }, { items: get(['n5']), state: 'active' }, { items: get(['n12']), state: 'active' }, { items: get(['n7','n19','n1']), state: 'dimmed' }]
+                    ]
+                },
+                // 4. Split Derecha Final
+                {
+                    text: "Lo mismo con la derecha. Todo dividido en unidades.",
+                    rows: [
+                        [{ items: [], state: '' }],
+                        [{ items: get(['n38']), state: '' }, { items: get(['n5']), state: '' }, { items: get(['n12']), state: '' },
+                         { items: get(['n7']), state: 'active' }, { items: get(['n19']), state: 'active' }, { items: get(['n1']), state: 'active' }]
+                    ]
+                },
+                // --- MERGE FASE ---
+                // 5. Comparar 5 y 12
+                {
+                    text: "Empezamos a MEZCLAR. Comparamos [5] y [12].",
+                    rows: [
+                        [{ items: get(['n38']), state: 'dimmed' }, { items: get(['n7','n19','n1']), state: 'dimmed' }],
+                        [{ items: get(['n5']), state: 'merging', comparingIds:['n5'] }, { items: get(['n12']), state: 'merging', comparingIds:['n12'] }]
+                    ]
+                },
+                // 6. Unir 5 y 12
+                {
+                    text: "Se unen ordenados: [5, 12].",
+                    rows: [
+                        [{ items: get(['n38']), state: 'dimmed' }, { items: get(['n7','n19','n1']), state: 'dimmed' }],
+                        [{ items: get(['n5','n12']), state: 'sorted' }]
+                    ]
+                },
+                // 7. Comparar 38 vs 5
+                {
+                    text: "Ahora mezclamos [38] con [5, 12]. 38 vs 5.",
+                    rows: [
+                        [{ items: get(['n7','n19','n1']), state: 'dimmed' }],
+                        [{ items: get(['n38']), state: 'merging', comparingIds:['n38'] }, { items: get(['n5','n12']), state: 'merging', comparingIds:['n5'] }],
+                        [{ items: [], state: 'merging' }] // Destino
+                    ]
+                },
+                // 8. Mover 5 y 12
+                {
+                    text: "5 y 12 son menores, bajan primero.",
+                    rows: [
+                        [{ items: get(['n7','n19','n1']), state: 'dimmed' }],
+                        [{ items: get(['n38']), state: 'merging', comparingIds:['n38'] }, { items: [], state: 'merging' }],
+                        [{ items: get(['n5','n12']), state: 'merging' }]
+                    ]
+                },
+                // 9. Izquierda Lista
+                {
+                    text: "Baja el 38. Mitad izquierda lista: [5, 12, 38].",
+                    rows: [
+                        [{ items: get(['n7','n19','n1']), state: 'dimmed' }],
+                        [{ items: [], state: '' }],
+                        [{ items: get(['n5','n12','n38']), state: 'sorted' }]
+                    ]
+                },
+                // 10. Derecha: 1 vs 19
+                {
+                    text: "Vamos a la derecha: [19] vs [1].",
+                    rows: [
+                         [{ items: get(['n5','n12','n38']), state: 'dimmed' }, { items: get(['n7']), state: '' }],
+                         [{ items: get(['n19']), state: 'merging', comparingIds:['n19'] }, { items: get(['n1']), state: 'merging', comparingIds:['n1'] }]
+                    ]
+                },
+                // 11. Derecha: Unir 1, 19
+                {
+                    text: "Se unen [1, 19]. Luego se mezclará con el 7.",
+                    rows: [
+                         [{ items: get(['n5','n12','n38']), state: 'dimmed' }, { items: get(['n7']), state: 'merging' }],
+                         [{ items: get(['n1','n19']), state: 'sorted' }]
+                    ]
+                },
+                // 12. Derecha Lista
+                {
+                    text: "(Saltamos paso intermedio) Derecha lista: [1, 7, 19].",
+                    rows: [
+                        [{ items: get(['n5','n12','n38']), state: 'sorted' }, { items: get(['n1','n7','n19']), state: 'sorted' }]
+                    ]
+                },
+                // 13. GRAN FINAL - Inicio
+                {
+                    text: "¡GRAN FINAL! Unimos las dos mitades. Comparamos los primeros: 5 vs 1.",
+                    rows: [
+                        [
+                            { items: get(['n5','n12','n38']), state: 'merging', comparingIds:['n5'] }, 
+                            { items: get(['n1','n7','n19']), state: 'merging', comparingIds:['n1'] }
+                        ],
+                        [{ items: [], state: 'merging' }]
+                    ]
+                },
+                // 14. Baja el 1
+                {
+                    text: "El 1 es menor, baja.",
+                    rows: [
+                        [
+                            { items: get(['n5','n12','n38']), state: 'merging', comparingIds:['n5'] }, 
+                            { items: get(['n7','n19']), state: 'merging', comparingIds:['n7'] }
+                        ],
+                        [{ items: get(['n1']), state: 'merging' }]
+                    ]
+                },
+                // 15. Baja el 5
+                {
+                    text: "Comparamos 5 vs 7. El 5 es menor, baja.",
+                    rows: [
+                        [
+                            { items: get(['n12','n38']), state: 'merging', comparingIds:['n12'] }, 
+                            { items: get(['n7','n19']), state: 'merging', comparingIds:['n7'] }
+                        ],
+                        [{ items: get(['n1','n5']), state: 'merging' }]
+                    ]
+                },
+                // 16. Baja el 7
+                {
+                    text: "Comparamos 12 vs 7. El 7 es menor, baja.",
+                    rows: [
+                        [
+                            { items: get(['n12','n38']), state: 'merging', comparingIds:['n12'] }, 
+                            { items: get(['n19']), state: 'merging', comparingIds:['n19'] }
+                        ],
+                        [{ items: get(['n1','n5','n7']), state: 'merging' }]
+                    ]
+                },
+                // 17. Final
+                {
+                    text: "El resto baja ordenadamente. ¡Lista completa!",
+                    rows: [
+                        [],
+                        [{ items: get(['n1','n5','n7','n12','n19','n38']), state: 'sorted', final: true }]
+                    ]
+                }
+            ];
+
+            const currentData = computed(() => steps[step.value]);
+
+            const next = () => {
+                if (step.value < steps.length - 1) step.value++;
+            };
+            
+            const prev = () => {
+                if (step.value > 0) step.value--;
+            };
+
+            // Teclado
+            onMounted(() => {
+                window.addEventListener('keydown', (e) => {
+                    if(e.key === 'ArrowRight') next();
+                    if(e.key === 'ArrowLeft') prev();
+                });
+            });
+
+            return { step, steps, currentData, next, prev };
+        }
+    }).mount('#app');
+</script>
+
+</body>
+</html>

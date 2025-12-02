@@ -1,0 +1,30 @@
+{
+  "id": "raiz",
+  "nombre": "/",
+  "tipo": "carpeta",
+  "contenido": null,
+  "hijos": [
+    {
+      "id": "carpeta1",
+      "nombre": "documentos",
+      "tipo": "carpeta",
+      "contenido": null,
+      "hijos": [
+        {
+          "id": "archivo1",
+          "nombre": "materia.txt",
+          "tipo": "archivo",
+          "contenido": "Estructura de Datos",
+          "hijos": []
+        }
+      ]
+    },
+    {
+      "id": "archivo2",
+      "nombre": "universidad.txt",
+      "tipo": "archivo",
+      "contenido": "Universidad Autonoma de Sinaloa",
+      "hijos": []
+    }
+  ]
+}
