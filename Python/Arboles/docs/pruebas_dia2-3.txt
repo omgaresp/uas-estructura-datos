@@ -1,0 +1,73 @@
+PLAN DE PRUEBAS - FASE 1 (DÍAS 2-3)
+===================================
+Objetivo: Verificar la correcta implementación del Árbol General,
+la recursividad en la búsqueda y las validaciones de inserción.
+
+---------------------------------------------------------------------
+PRUEBA #1: INICIALIZACIÓN DEL SISTEMA
+---------------------------------------------------------------------
+DESCRIPCIÓN: Verificar que al iniciar la clase Arbol, se cree la raíz.
+PASOS:
+    1. Instanciar la clase: sistema = Arbol()
+    2. Acceder al atributo: sistema.raiz
+RESULTADO ESPERADO:
+    - La raíz no debe ser NULL (None).
+    - sistema.raiz.nombre debe ser "/" o "raiz".
+    - sistema.raiz.tipo debe ser "carpeta".
+
+---------------------------------------------------------------------
+PRUEBA #2: INSERCIÓN DE CARPETA (Nivel 1)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Insertar un nodo tipo 'carpeta' directamente bajo la raíz.
+PASOS:
+    1. Ejecutar: crear_nodo(id_padre="root", nuevo_id="dir_1", nombre="home", tipo="carpeta")
+RESULTADO ESPERADO:
+    - La función retorna True.
+    - La lista sistema.raiz.hijos debe tener tamaño 1.
+    - El hijo en el índice 0 debe tener nombre="home".
+
+---------------------------------------------------------------------
+PRUEBA #3: INSERCIÓN ANIDADA (Nivel 2)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Insertar un archivo dentro de la carpeta creada en la Prueba #2.
+PASOS:
+    1. Ejecutar: crear_nodo(id_padre="dir_1", nuevo_id="file_1", nombre="notas.txt", tipo="archivo")
+RESULTADO ESPERADO:
+    - La función retorna True.
+    - sistema.raiz.hijos[0].hijos debe tener tamaño 1.
+    - El nodo encontrado debe ser de tipo "archivo".
+
+---------------------------------------------------------------------
+PRUEBA #4: VALIDACIÓN DE PADRE INEXISTENTE
+---------------------------------------------------------------------
+DESCRIPCIÓN: Intentar insertar un nodo bajo un ID que no existe en el árbol.
+PASOS:
+    1. Ejecutar: crear_nodo(id_padre="id_fantasma_99", nuevo_id="x", nombre="test", tipo="carpeta")
+RESULTADO ESPERADO:
+    - La función retorna False.
+    - Mensaje de error en consola: "Padre con ID... no existe".
+    - El árbol no debe sufrir cambios.
+
+---------------------------------------------------------------------
+PRUEBA #5: VALIDACIÓN DE TIPO DE PADRE
+---------------------------------------------------------------------
+DESCRIPCIÓN: Intentar agregar un hijo a un nodo que es un archivo (no carpeta).
+PASOS:
+    1. Usar el ID del archivo creado en Prueba #3 ("file_1").
+    2. Ejecutar: crear_nodo(id_padre="file_1", nuevo_id="error", nombre="fail", tipo="carpeta")
+RESULTADO ESPERADO:
+    - La función retorna False.
+    - Mensaje de error: "No es una carpeta" o similar.
+    - Los archivos no deben tener hijos.
+
+---------------------------------------------------------------------
+PRUEBA #6: UNICIDAD DE NOMBRES (Duplicados)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Intentar crear dos nodos con el mismo nombre en la misma carpeta.
+PASOS:
+    1. En la carpeta "dir_1" (donde ya existe "notas.txt").
+    2. Ejecutar: crear_nodo(id_padre="dir_1", nuevo_id="file_2", nombre="notas.txt", tipo="archivo")
+RESULTADO ESPERADO:
+    - La función retorna False.
+    - Mensaje de error: "Ya existe 'notas.txt' en este directorio".
+    - No se crean duplicados.
