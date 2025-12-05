@@ -1,0 +1,62 @@
+PLAN DE PRUEBAS - FASE 2 (DÍA 4: PERSISTENCIA)
+==============================================
+Objetivo: Verificar el ciclo de vida de los datos (CRUD) y la capacidad
+del sistema para guardar y recuperar el estado del árbol desde un archivo JSON.
+
+---------------------------------------------------------------------
+PRUEBA #1: GENERACIÓN DE ARCHIVO JSON
+---------------------------------------------------------------------
+DESCRIPCIÓN: Verificar que al crear nodos, se genere automáticamente el archivo físico.
+PASOS:
+    1. Borrar 'sistema_archivos.json' si existe.
+    2. Instanciar sistema = Arbol().
+    3. Ejecutar: crear_nodo("raiz", "dir_fotos", "fotos", "carpeta").
+RESULTADO ESPERADO:
+    - El archivo 'sistema_archivos.json' debe aparecer en la carpeta raíz.
+    - El archivo no debe estar vacío.
+
+---------------------------------------------------------------------
+PRUEBA #2: SERIALIZACIÓN CORRECTA (CONTENIDO DEL JSON)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Validar que el JSON tenga la estructura jerárquica correcta.
+PASOS:
+    1. Abrir el archivo 'sistema_archivos.json' generado en Prueba #1.
+RESULTADO ESPERADO:
+    - Debe contener un objeto JSON válido.
+    - Debe tener la raíz "/" y dentro de "hijos" debe estar la carpeta "fotos".
+    - Los atributos id, nombre, tipo deben coincidir.
+
+---------------------------------------------------------------------
+PRUEBA #3: RECUPERACIÓN DE DATOS (REINICIO DE SISTEMA)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Simular el apagado del programa y verificar si recuerda los datos.
+PASOS:
+    1. Eliminar el objeto sistema de la memoria (del sistema) o cerrar el programa.
+    2. Instanciar un NUEVO objeto: sistema_nuevo = Arbol().
+    3. Buscar el nodo creado antes: buscar_por_id("dir_fotos").
+RESULTADO ESPERADO:
+    - La búsqueda debe retornar el objeto Nodo y no None.
+    - sistema_nuevo.raiz.hijos no debe estar vacío.
+
+---------------------------------------------------------------------
+PRUEBA #4: PERSISTENCIA DE PROFUNDIDAD (NODOS ANIDADOS)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Verificar que se guarden y carguen estructuras complejas (nietos/bisnietos).
+PASOS:
+    1. Crear jerarquía: Raíz -> CarpetaA -> CarpetaB -> archivo.txt.
+    2. Reiniciar el sistema.
+    3. Buscar el nodo más profundo ("archivo.txt").
+RESULTADO ESPERADO:
+    - El nodo profundo debe existir.
+    - Su cadena de padres (estructura) debe mantenerse intacta.
+
+---------------------------------------------------------------------
+PRUEBA #5: ROBUSTEZ (ARCHIVO CORRUPTO O INEXISTENTE)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Verificar que el sistema no explote si no hay archivo previo.
+PASOS:
+    1. Borrar 'sistema_archivos.json'.
+    2. Iniciar sistema = Arbol().
+RESULTADO ESPERADO:
+    - El programa no debe lanzar error (crash).
+    - Debe iniciar un árbol nuevo con la raíz por defecto "/".

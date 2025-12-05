@@ -32,7 +32,7 @@ Aplicación de consola que simula la gestión jerárquica de archivos y carpetas
 * [x] **Día 1:** Definir alcance mínimo (MVP), estructuras de datos y formato JSON.
 * [x] **Día 2–3:** Implementar árbol general y operaciones básicas; pruebas unitarias
 iniciales.
-* [ ] **Día 4:** Implementar persistencia (guardar/cargar JSON).
+* [x] **Día 4:** Implementar persistencia (guardar/cargar JSON).
 * [ ] **Día 5–6:** Implementar Trie y endpoints de búsqueda/autocompletado; integrar con operaciones de árbol.
 * [ ] **Día 7–9:** Interfaz de consola completa y comandos; manejo de errores y papelera.
 * [ ] **Día 10–11:** Pruebas de integración, casos límite y performance con árboles grandes.
