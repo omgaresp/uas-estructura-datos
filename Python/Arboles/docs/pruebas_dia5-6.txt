@@ -1,0 +1,47 @@
+PLAN DE PRUEBAS - FASE 3 (DÍAS 5-6: BÚSQUEDA Y AUTOCOMPLETADO)
+==============================================================
+Objetivo: Validar la integración del Trie para autocompletado y
+del Mapa Hash para búsquedas O(1), asegurando su reconstrucción.
+
+---------------------------------------------------------------------
+PRUEBA #1: INSERCIÓN EN ESTRUCTURAS AUXILIARES
+---------------------------------------------------------------------
+DESCRIPCIÓN: Verificar que al crear un nodo, se actualicen Trie y Hash.
+PASOS:
+    1. Iniciar sistema.
+    2. Crear nodo nombre="informe_final.pdf", id="doc_99".
+RESULTADO ESPERADO:
+    - sistema.indice_ids["doc_99"] debe retornar el nodo.
+    - sistema.trie.buscar_por_prefijo("inf") debe incluir "informe_final.pdf".
+
+---------------------------------------------------------------------
+PRUEBA #2: AUTOCOMPLETADO (TRIE)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Buscar palabras con prefijo común.
+DATOS: Nodos "foto_playa.jpg", "foto_montaña.jpg", "factura.pdf".
+PASOS:
+    1. Ejecutar buscar_autocompletado("foto").
+RESULTADO ESPERADO:
+    - Lista retornada: ["foto_playa.jpg", "foto_montaña.jpg"].
+    - NO debe contener "factura.pdf".
+
+---------------------------------------------------------------------
+PRUEBA #3: RENDIMIENTO DE BÚSQUEDA (HASH MAP)
+---------------------------------------------------------------------
+DESCRIPCIÓN: Validar acceso directo por ID.
+PASOS:
+    1. Buscar un nodo profundo por su ID.
+RESULTADO ESPERADO:
+    - Retorno inmediato del objeto Nodo.
+    - Verificación interna: No debe haber recorrido recursivo (O(1)).
+
+---------------------------------------------------------------------
+PRUEBA #4: RECONSTRUCCIÓN POST-CARGA
+---------------------------------------------------------------------
+DESCRIPCIÓN: Verificar que los índices funcionen tras reiniciar la app.
+PASOS:
+    1. Cerrar sistema (guardar JSON).
+    2. Cargar sistema.
+    3. Intentar autocompletar un nombre creado en la sesión anterior.
+RESULTADO ESPERADO:
+    - El Trie debe responder correctamente (significa que _reindexar funcionó).
