@@ -8,7 +8,7 @@ class Trie:
         self.raiz = NodoTrie()
 
     def insertar(self, palabra):
-        # Guarda una palabra en el Trie.
+        # Inserta una clave en el Trie.
         nodo = self.raiz
         for char in palabra:
             if char not in nodo.hijos:
@@ -17,21 +17,22 @@ class Trie:
         nodo.es_fin_palabra = True
 
     def buscar_por_prefijo(self, prefijo):
-        # Retorna una lista de palabras que empiezan con el prefijo dado.
+        # Retorna todas las palabras almacenadas que inician con el prefijo dado.
         nodo = self.raiz
-        # 1. Bajar hasta el final del prefijo
+
+        # Navegación hasta el nodo que representa el prefijo
         for char in prefijo:
             if char not in nodo.hijos:
-                return [] # No hay nada con ese prefijo
+                return []
             nodo = nodo.hijos[char]
 
-        # 2. Recolectar todas las palabras debajo de ese nodo
+        # Recolección de palabras completas
         resultados = []
         self._recolectar_palabras(nodo, prefijo, resultados)
         return resultados
 
     def _recolectar_palabras(self, nodo, prefijo_actual, lista_resultados):
-        # Función auxiliar recursiva para DFS.
+        # Método auxiliar recursivo para la recuperacion.
         if nodo.es_fin_palabra:
             lista_resultados.append(prefijo_actual)
 

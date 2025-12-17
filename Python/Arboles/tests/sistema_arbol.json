@@ -1,0 +1,26 @@
+{
+    "id": "raiz",
+    "nombre": "/",
+    "tipo": "carpeta",
+    "contenido": null,
+    "padre_id": null,
+    "hijos": [
+        {
+            "id": "A",
+            "nombre": "A",
+            "tipo": "carpeta",
+            "contenido": null,
+            "padre_id": "raiz",
+            "hijos": [
+                {
+                    "id": "B",
+                    "nombre": "B",
+                    "tipo": "carpeta",
+                    "contenido": null,
+                    "padre_id": "A",
+                    "hijos": []
+                }
+            ]
+        }
+    ]
+}

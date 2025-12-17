@@ -1,0 +1,10 @@
+[
+    {
+        "id": "archivo_proyecto.py",
+        "nombre": "tarea.txt",
+        "tipo": "archivo",
+        "contenido": "",
+        "padre_id": "carpeta_Semestre1",
+        "hijos": []
+    }
+]

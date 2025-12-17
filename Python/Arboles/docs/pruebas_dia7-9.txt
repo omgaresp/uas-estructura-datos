@@ -1,0 +1,41 @@
+PLAN DE PRUEBAS - FASE 4 (DÍAS 7-9: CLI y GESTIÓN AVANZADA)
+===========================================================
+Objetivo: Validar la interacción de usuario, la navegación por carpetas
+y la persistencia dual (árbol + papelera).
+
+---------------------------------------------------------------------
+PRUEBA #1: INTERACCIÓN BÁSICA
+---------------------------------------------------------------------
+PASOS:
+    1. Ejecutar 'python main.py'.
+    2. Comando: mkdir documentos doc_01
+    3. Comando: cd doc_01
+    4. Comando: ls
+RESULTADO:
+    - El prompt cambia a "/documentos >".
+    - 'ls' muestra vacío.
+
+---------------------------------------------------------------------
+PRUEBA #2: GESTIÓN DE ARCHIVOS Y MOVIDO
+---------------------------------------------------------------------
+PASOS:
+    1. Estando en 'documentos', comando: touch reporte.txt
+    2. Comando: cd .. (volver a raíz)
+    3. Comando: mkdir backup back_01
+    4. Comando: mv archivo_reporte.txt back_01 (Usar ID autogenerado o el que liste el ls)
+RESULTADO:
+    - 'ls' en raíz muestra carpeta backup.
+    - 'cd back_01' y luego 'ls' muestra el archivo 'reporte.txt'.
+
+---------------------------------------------------------------------
+PRUEBA #3: ELIMINACIÓN Y PERSISTENCIA DE PAPELERA
+---------------------------------------------------------------------
+PASOS:
+    1. Identificar ID de un archivo (ej: archivo_reporte.txt).
+    2. Comando: rm archivo_reporte.txt
+    3. Verificar que se creó el archivo 'papelera.json' en la carpeta del proyecto.
+    4. Comando: exit
+    5. Abrir 'papelera.json' con editor de texto.
+RESULTADO:
+    - El archivo JSON de papelera debe contener los datos del nodo borrado.
+    - Al reiniciar el programa, el archivo no debe aparecer en el árbol principal.

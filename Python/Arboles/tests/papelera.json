@@ -1,0 +1,27 @@
+[
+    {
+        "id": "sub1",
+        "nombre": "subcarpeta",
+        "tipo": "carpeta",
+        "contenido": null,
+        "padre_id": "c1",
+        "hijos": []
+    },
+    {
+        "id": "c1",
+        "nombre": "carpeta1",
+        "tipo": "carpeta",
+        "contenido": null,
+        "padre_id": "raiz",
+        "hijos": [
+            {
+                "id": "f1",
+                "nombre": "archivo.txt",
+                "tipo": "archivo",
+                "contenido": null,
+                "padre_id": "c1",
+                "hijos": []
+            }
+        ]
+    }
+]

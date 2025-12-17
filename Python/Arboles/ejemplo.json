@@ -3,18 +3,21 @@
   "nombre": "/",
   "tipo": "carpeta",
   "contenido": null,
+  "padre_id": null,
   "hijos": [
     {
       "id": "carpeta1",
       "nombre": "documentos",
       "tipo": "carpeta",
       "contenido": null,
+      "padre_id": "raiz",
       "hijos": [
         {
           "id": "archivo1",
           "nombre": "materia.txt",
           "tipo": "archivo",
           "contenido": "Estructura de Datos",
+          "padre_id": "carpeta1",
           "hijos": []
         }
       ]
@@ -24,6 +27,7 @@
       "nombre": "universidad.txt",
       "tipo": "archivo",
       "contenido": "Universidad Autonoma de Sinaloa",
+      "padre_id": "raiz",
       "hijos": []
     }
   ]

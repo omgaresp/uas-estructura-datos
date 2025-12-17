@@ -1,0 +1,26 @@
+{
+    "id": "raiz",
+    "nombre": "/",
+    "tipo": "carpeta",
+    "contenido": null,
+    "padre_id": null,
+    "hijos": [
+        {
+            "id": "carpeta_Universidad",
+            "nombre": "Universidad",
+            "tipo": "carpeta",
+            "contenido": null,
+            "padre_id": "raiz",
+            "hijos": [
+                {
+                    "id": "carpeta_Semestre1",
+                    "nombre": "Semestre1",
+                    "tipo": "carpeta",
+                    "contenido": null,
+                    "padre_id": "carpeta_Universidad",
+                    "hijos": []
+                }
+            ]
+        }
+    ]
+}

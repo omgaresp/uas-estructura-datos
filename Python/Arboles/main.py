@@ -1,8 +1,8 @@
-from src.arbol import Arbol
+from src.cli import CLI
 
 def main():
-    sistema = Arbol()
-    print(f"Raíz: '{sistema.raiz.nombre}'")
+    app = CLI()
+    app.iniciar()
 
 if __name__ == "__main__":
     main()
